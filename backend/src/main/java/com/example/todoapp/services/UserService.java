@@ -3,6 +3,7 @@ package com.example.todoapp.services;
 import com.example.todoapp.dao.mybatis.user.UserDAO;
 import com.example.todoapp.domain.logic.UserChecksResponse;
 import com.example.todoapp.domain.vo.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,11 +31,23 @@ public class UserService {
         return res;
     }
 
-    public String checkUsername(String username) {
-        return this.userDao.checkUsername(username);
+    public ResponseEntity<String> checkUsername(String username) {
+        String foundUsername = this.userDao.checkUsername(username);
+        if(foundUsername != null){
+            return ResponseEntity.unprocessableEntity().body(foundUsername);
+        }
+        else {
+           return ResponseEntity.ok(foundUsername);
+        }
     }
 
-    public String checkEmail(String email) {
-        return this.userDao.checkEmail(email);
+    public ResponseEntity<String> checkEmail(String email) {
+        String foundEmail = this.userDao.checkEmail(email);
+        if( foundEmail != null) {
+            return ResponseEntity.unprocessableEntity().body(foundEmail);
+        }
+        else {
+            return ResponseEntity.ok(foundEmail);
+        }
     }
 }

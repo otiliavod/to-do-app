@@ -3,6 +3,7 @@ package com.example.todoapp.controllers;
 import com.example.todoapp.domain.logic.UserChecksResponse;
 import com.example.todoapp.domain.vo.User;
 import com.example.todoapp.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,12 +19,12 @@ public class UserController {
     }
 
     @GetMapping(path = "/checkUsername/{username}")
-    String checkUsername(@PathVariable String username) {
+    ResponseEntity<String> checkUsername(@PathVariable String username) {
         return this.userService.checkUsername(username);
     }
 
     @GetMapping(path = "/checkEmail/{email}")
-    String checkEmail(@PathVariable String email) {
+    ResponseEntity<String> checkEmail(@PathVariable String email) {
         return this.userService.checkEmail(email);
     }
 }
