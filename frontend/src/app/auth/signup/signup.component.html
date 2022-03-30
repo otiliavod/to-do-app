@@ -1,5 +1,5 @@
-<div class="container">
-  <h3>Create an account</h3>
+<div class="container is-max-desktop">
+  <h3 class="title is-3">Create an account</h3>
   <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
     <app-input
       label="First Name"
@@ -29,6 +29,7 @@
       [control]="authForm.get('passwordConfirmation')"
     ></app-input>
     <div
+      class="help is-danger"
       *ngIf="
         authForm.get('password').touched &&
         authForm.get('passwordConfirmation').touched &&
@@ -42,15 +43,15 @@
         No internet connection detected. Failed to sign up.
       </p>
       <p
+        class="help is-danger"
         *ngIf="
-          authForm.errors['nonUniqueUsername'] &&
+          authForm.errors['nonUniqueUsername'] ||
           authForm.errors['nonUniqueEmail']
         "
       >
         User or email is already in use
       </p>
     </div>
-    {{ authForm.errors | json }}
-    <button>Sign Up</button>
+    <button class="button is-primary">Sign Up</button>
   </form>
 </div>
