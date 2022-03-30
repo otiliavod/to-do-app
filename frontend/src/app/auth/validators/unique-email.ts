@@ -12,12 +12,12 @@ export class UniqueEmail implements AsyncValidator {
 
     return this.authService.emailAvailable(value).pipe(
       map((value) => {
-        if (value) {
+        if (!value) {
           return null;
         }
       }),
       catchError((err) => {
-        if (err.error.email) {
+        if (err.error) {
           return of({ nonUniqueEmail: true });
         } else {
           return of({ noConnection: true });

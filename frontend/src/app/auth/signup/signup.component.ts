@@ -60,4 +60,34 @@ export class SignupComponent implements OnInit {
     },
     { validators: [this.matchPassword.validate] }
   );
+
+  onSubmit() {
+    if (this.authForm.invalid || this.authForm.pending) {
+      return;
+    }
+
+    this.authService.signup(this.authForm.value).subscribe({
+      next: (response) => {
+        const { userAlreadyInUse, emailAlreadyInUse } = response;
+        if (!userAlreadyInUse && !emailAlreadyInUse) {
+          console.log('it worked');
+        } else {
+          if (userAlreadyInUse) {
+            this.authForm.setErrors({ nonUniqueUsername: true });
+          }
+          if (emailAlreadyInUse) {
+            this.authForm.setErrors({ nonUniqueEmail: true });
+          }
+        }
+        // this.router.navigateByUrl('');
+      },
+      error: (err) => {
+        if (!err.status) {
+          this.authForm.setErrors({ noConnection: true });
+        } else {
+          this.authForm.setErrors({ unknownErrors: true });
+        }
+      },
+    });
+  }
 }

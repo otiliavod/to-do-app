@@ -12,12 +12,13 @@ export class UniqueUsername implements AsyncValidator {
 
     return this.authService.usernameAvailable(value).pipe(
       map((value) => {
-        if (value) {
+        if (!value) {
           return null;
         }
       }),
       catchError((err) => {
-        if (err.error.username) {
+        console.log(err);
+        if (err.error) {
           return of({ nonUniqueUsername: true });
         } else {
           return of({ noConnection: true });

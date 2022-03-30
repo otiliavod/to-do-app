@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 interface SignupCredentials {
+  firstName: string;
+  lastName: string;
   username: string;
   email: string;
   password: string;
@@ -29,6 +31,6 @@ export class AuthService {
   }
 
   signup(credentials: SignupCredentials) {
-    return this.http.post<SignupResponse>(`${this.baseUrl}/users`, credentials);
+    return this.http.post<SignupResponse>(`${this.baseUrl}`, credentials);
   }
 }
