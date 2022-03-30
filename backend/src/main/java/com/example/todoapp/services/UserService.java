@@ -14,13 +14,13 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public UserChecksResponse signUp(User user) {
+    public ResponseEntity<UserChecksResponse> signUp(User user) {
         String userAlreadyExists = this.userDao.checkUsername(user.getUsername());
         String emailAlreadyExists = this.userDao.checkEmail(user.getEmail());
         UserChecksResponse res = new UserChecksResponse();
         if(userAlreadyExists == null && emailAlreadyExists == null ){
             this.userDao.signUp(user);
-            return res;
+            return ResponseEntity.ok(res);
         }
         if(userAlreadyExists != null){
             res.setUserAlreadyInUse(true);
@@ -28,7 +28,7 @@ public class UserService {
         if(emailAlreadyExists != null){
             res.setEmailAlreadyInUse(true);
         }
-        return res;
+        return ResponseEntity.unprocessableEntity().body(res);
     }
 
     public ResponseEntity<String> checkUsername(String username) {

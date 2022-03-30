@@ -14,7 +14,7 @@ public class UserController {
         this.userService = userService;
     }
     @PostMapping
-    UserChecksResponse signUp(@RequestBody User user){
+    ResponseEntity<UserChecksResponse> signUp(@RequestBody User user){
         return this.userService.signUp(user);
     }
 
