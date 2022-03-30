@@ -1,0 +1,44 @@
+<div class="field">
+  <label class="label">{{ label }}</label>
+  <div class="control">
+    <input
+      class="input"
+      [ngClass]="{ 'is-danger': showErrors() }"
+      [type]="inputType"
+      [formControl]="control"
+      [placeholder]="label"
+    />
+  </div>
+  <div *ngIf="showErrors()">
+    <p class="help is-danger" *ngIf="control.errors['required']">
+      Value is required
+    </p>
+    <p class="help is-danger" *ngIf="control.errors.email">
+      Please enter a valid email
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['minlength']">
+      Value entered is {{ control.errors.minlength.actualLength }}
+      characters long, but it must be at least
+      {{ control.errors.minlength.requiredLength }}
+      characters long
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['maxlength']">
+      Value entered is {{ control.errors.maxlength.actualLength }}
+      characters long, but it cannot be longer than
+      {{ control.errors.maxlength.requiredLength }}
+      characters
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['pattern']">
+      Invalid format
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['nonUniqueUsername']">
+      Username is taken
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['nonUniqueEmail']">
+      Email is taken
+    </p>
+    <p class="help is-danger" *ngIf="control.errors['noConnection']">
+      No internet connection
+    </p>
+  </div>
+</div>
