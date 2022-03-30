@@ -67,26 +67,23 @@ export class SignupComponent implements OnInit {
     }
 
     this.authService.signup(this.authForm.value).subscribe({
-      next: (response) => {
-        const { userAlreadyInUse, emailAlreadyInUse } = response;
-        if (!userAlreadyInUse && !emailAlreadyInUse) {
-          console.log('it worked');
-        } else {
-          if (userAlreadyInUse) {
-            this.authForm.setErrors({ nonUniqueUsername: true });
-          }
-          if (emailAlreadyInUse) {
-            this.authForm.setErrors({ nonUniqueEmail: true });
-          }
-        }
+      next: () => {
         // this.router.navigateByUrl('');
       },
       error: (err) => {
+        const { userAlreadyInUse, emailAlreadyInUse } = err.error;
+        let errorsToBeShown = {};
         if (!err.status) {
-          this.authForm.setErrors({ noConnection: true });
+          errorsToBeShown['noConnection'] = true;
         } else {
-          this.authForm.setErrors({ unknownErrors: true });
+          if (userAlreadyInUse) {
+            errorsToBeShown['nonUniqueUsername'] = true;
+          }
+          if (emailAlreadyInUse) {
+            errorsToBeShown['nonUniqueEmail'] = true;
+          }
         }
+        this.authForm.setErrors(errorsToBeShown);
       },
     });
   }

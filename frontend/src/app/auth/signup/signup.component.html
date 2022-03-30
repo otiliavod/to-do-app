@@ -41,8 +41,16 @@
       <p *ngIf="authForm.errors['noConnection']">
         No internet connection detected. Failed to sign up.
       </p>
-      <p *ngIf="authForm.errors['unknownError']">Failed to sign up.</p>
+      <p
+        *ngIf="
+          authForm.errors['nonUniqueUsername'] &&
+          authForm.errors['nonUniqueEmail']
+        "
+      >
+        User or email is already in use
+      </p>
     </div>
+    {{ authForm.errors | json }}
     <button>Sign Up</button>
   </form>
 </div>
