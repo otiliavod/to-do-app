@@ -48,16 +48,12 @@ export class AuthService {
   }
 
   signup(credentials: SignupCredentials) {
-    return this.http.post<SignupResponse>(`${this.baseUrl}`, credentials, {
-      withCredentials: true,
-    });
+    return this.http.post<SignupResponse>(`${this.baseUrl}`, credentials);
   }
 
   signin(credentials: SigninCredentials) {
     return this.http
-      .post<SigninResponse>(`${this.baseUrl}/signin`, credentials, {
-        withCredentials: true,
-      })
+      .post<SigninResponse>(`${this.baseUrl}/signin`, credentials)
       .pipe(
         tap(({ username }) => {
           this.signedin$.next(true);
@@ -67,15 +63,11 @@ export class AuthService {
   }
 
   checkAuth() {
-    return this.http
-      .get<SignedinResponse>(`${this.baseUrl}/signedin`, {
-        withCredentials: true,
+    return this.http.get<SignedinResponse>(`${this.baseUrl}/signedin`).pipe(
+      tap(({ authenticated, username }) => {
+        this.signedin$.next(authenticated);
+        this.username = username;
       })
-      .pipe(
-        tap(({ authenticated, username }) => {
-          this.signedin$.next(authenticated);
-          this.username = username;
-        })
-      );
+    );
   }
 }
