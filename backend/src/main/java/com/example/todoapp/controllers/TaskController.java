@@ -25,4 +25,9 @@ public class TaskController {
     public void addUserTask(@RequestBody Task task) {
         this.taskService.addUserTask(task);
     }
+
+    @PutMapping(path="/")
+    public void updateTask(@RequestBody Task task) {
+        this.taskService.updateTask(task);
+    }
 }

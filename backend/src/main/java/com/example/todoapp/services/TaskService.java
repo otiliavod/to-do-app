@@ -21,4 +21,9 @@ public class TaskService {
     public void addUserTask(Task task) {
         this.taskDao.addUserTask(task);
     }
+
+    public void updateTask(Task task) {
+        this.taskDao.updateTask(task);
+//        return this.taskDao.getTaskById(task.getId());
+    }
 }
