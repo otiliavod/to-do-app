@@ -3,10 +3,7 @@ package com.example.todoapp.controllers;
 import com.example.todoapp.domain.vo.Task;
 import com.example.todoapp.services.TaskService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,15 @@ public class TaskController {
     @GetMapping(path="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     List<Task> getUserTasks(@PathVariable Long userId) {
       return this.taskService.getUserTasks(userId);
+    }
+
+    @PostMapping(path="/")
+    public void addUserTask(@RequestBody Task task) {
+        this.taskService.addUserTask(task);
+    }
+
+    @PutMapping(path="/")
+    public void updateTask(@RequestBody Task task) {
+        this.taskService.updateTask(task);
     }
 }
