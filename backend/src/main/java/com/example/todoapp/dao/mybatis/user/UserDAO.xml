@@ -6,10 +6,12 @@
         insert into users(first_name,last_name,username,email,password)
         values (#{firstName},#{lastName},#{username},#{email},#{password})
     </insert>
+
     <select id="checkUsername" parameterType="String" resultType="String">
         select username from users
         where username = #{username}
     </select>
+
     <select id="checkEmail" parameterType="String" resultType="String">
         select email from users
         where email = #{email}
@@ -20,4 +22,9 @@
         set first_name = #{firstName}, last_name = #{lastName}, password = #{password}
         where id = #{id}
     </update>
+
+    <delete id="deleteProfile" parameterType="Long">
+        delete from users
+        where id = #{id}
+    </delete>
 </mapper>

@@ -32,4 +32,9 @@ public class UserController {
     void updateProfile(@RequestBody User user) {
         this.userService.updateProfile(user);
     }
+
+    @DeleteMapping(path="/{id}")
+    void deleteProfile(@PathVariable Long id) {
+        this.userService.deleteProfile(id);
+    }
 }
