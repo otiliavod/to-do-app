@@ -17,5 +17,10 @@
         order by status desc
     </select>
 
+    <insert id="addUserTask" parameterType="Task">
+        insert into tasks(title,description,status,user_id)
+        values (#{taskTitle}, #{taskDescription}, #{status}, #{userId})
+    </insert>
+
 
 </mapper>

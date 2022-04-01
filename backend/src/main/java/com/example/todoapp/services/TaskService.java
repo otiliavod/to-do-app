@@ -17,4 +17,8 @@ public class TaskService {
     public List<Task> getUserTasks(Long userId) {
         return this.taskDao.getUserTasks(userId);
     }
+
+    public void addUserTask(Task task) {
+        this.taskDao.addUserTask(task);
+    }
 }
