@@ -50,4 +50,8 @@ public class UserService {
             return ResponseEntity.ok(foundEmail);
         }
     }
+
+    public void updateProfile(User user) {
+        this.userDao.updateProfile(user);
+    }
 }

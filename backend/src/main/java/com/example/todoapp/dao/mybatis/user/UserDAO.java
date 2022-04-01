@@ -10,4 +10,5 @@ public interface UserDAO {
     String checkUsername(String username);
     String checkEmail(String email);
     void signUp(User user);
+    void updateProfile(User user);
 }

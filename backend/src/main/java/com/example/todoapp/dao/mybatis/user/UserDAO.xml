@@ -14,4 +14,10 @@
         select email from users
         where email = #{email}
     </select>
+
+    <update id="updateProfile" parameterType="User">
+        update users
+        set first_name = #{firstName}, last_name = #{lastName}, password = #{password}
+        where id = #{id}
+    </update>
 </mapper>

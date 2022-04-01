@@ -27,4 +27,9 @@ public class UserController {
     ResponseEntity<String> checkEmail(@PathVariable String email) {
         return this.userService.checkEmail(email);
     }
+
+    @PutMapping(path = "/")
+    void updateProfile(@RequestBody User user) {
+        this.userService.updateProfile(user);
+    }
 }
