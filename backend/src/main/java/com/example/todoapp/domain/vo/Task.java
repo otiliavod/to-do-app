@@ -9,6 +9,6 @@ public class Task {
     private Long id;
     private String taskTitle;
     private String taskDescription;
-    private Short status;
+    private String status;
     private Long userId;
 }

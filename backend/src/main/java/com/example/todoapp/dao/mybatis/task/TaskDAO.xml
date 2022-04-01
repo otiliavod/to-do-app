@@ -17,21 +17,5 @@
         order by status desc
     </select>
 
-    <insert id="addUserTask" parameterType="Task">
-        insert into tasks(title,description,status,user_id)
-        values (#{taskTitle}, #{taskDescription}, #{status}, #{userId})
-    </insert>
-
-    <update id="updateTask" parameterType="Task">
-        update tasks
-        set title = #{taskTitle}, description = #{taskDescription}, status = #{status}
-        where id = #{id}
-    </update>
-
-    <select id="getTaskById" parameterType="Long" resultType="Task">
-        select id,title,description,status,user_id from tasks
-        where id = #{id}
-    </select>
-
 
 </mapper>
