@@ -26,4 +26,8 @@ public class TaskService {
         this.taskDao.updateTask(task);
 //        return this.taskDao.getTaskById(task.getId());
     }
+
+    public void deleteTask(Long id) {
+        this.taskDao.deleteTask(id);
+    }
 }

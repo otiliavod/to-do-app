@@ -30,4 +30,9 @@ public class TaskController {
     public void updateTask(@RequestBody Task task) {
         this.taskService.updateTask(task);
     }
+
+    @DeleteMapping(path="/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        this.taskService.deleteTask(id);
+    }
 }
