@@ -34,8 +34,15 @@ interface SignedinResponse {
 })
 export class AuthService {
   baseUrl = 'http://localhost:8080/users';
-  signedin$ = new BehaviorSubject(null);
+  signedin$ = new BehaviorSubject(true);
   username = '';
+  crtUser = {
+    id: 1,
+    firstName: 'Otilia',
+    lastName: 'Vodnitchi',
+    email: 'otilia.vod@gmail.com',
+    username: 'zoe',
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -69,5 +76,9 @@ export class AuthService {
         this.username = username;
       })
     );
+  }
+
+  getCrtUser() {
+    return this.crtUser;
   }
 }
