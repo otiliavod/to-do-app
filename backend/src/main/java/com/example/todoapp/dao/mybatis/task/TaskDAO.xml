@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="getUserTasks" parameterType="Long" resultMap="taskList">
-        select username,tasks.id,title,description,status from users
+        select username,tasks.id,title,description,status,user_id from users
         join tasks on tasks.user_id = users.id
         where users.id = #{userId}
         order by status desc
