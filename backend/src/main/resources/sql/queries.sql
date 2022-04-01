@@ -14,13 +14,13 @@ values ('Clean',1);
 
 -- select just the tasks created by the user
 select tasks.id, title, description, status from users
-                                                     join tasks on tasks.user_id = users.id
+join tasks on tasks.user_id = users.id
 where users.id = 1
 order by status desc;
 
 -- select completed/not completed tasks for current user
 select tasks.id, title, description, status from users
-                                                     join tasks on tasks.user_id = users.id
+join tasks on tasks.user_id = users.id
 where users.id = 1 and status = 0;
 
 -- Sign in
