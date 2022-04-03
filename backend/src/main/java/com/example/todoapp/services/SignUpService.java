@@ -4,14 +4,17 @@ import com.example.todoapp.dao.mybatis.user.UserDAO;
 import com.example.todoapp.domain.logic.UserChecksResponse;
 import com.example.todoapp.domain.vo.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class SignUpService {
     private final UserDAO userDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserDAO userDao) {
+    public SignUpService(UserDAO userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public ResponseEntity<UserChecksResponse> signUp(User user) {
@@ -19,6 +22,7 @@ public class UserService {
         String emailAlreadyExists = this.userDao.checkEmail(user.getEmail());
         UserChecksResponse res = new UserChecksResponse();
         if(userAlreadyExists == null && emailAlreadyExists == null ){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             this.userDao.signUp(user);
             return ResponseEntity.ok(res);
         }
@@ -49,5 +53,9 @@ public class UserService {
         else {
             return ResponseEntity.ok(foundEmail);
         }
+    }
+
+    public User findByUsername(String username) {
+        return this.userDao.findByUsername(username);
     }
 }
