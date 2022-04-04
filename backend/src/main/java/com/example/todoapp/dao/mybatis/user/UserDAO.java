@@ -10,4 +10,7 @@ public interface UserDAO {
     String checkUsername(String username);
     String checkEmail(String email);
     void signUp(User user);
+    User findByUsername(String username);
+    void updateProfile(User user);
+    void deleteProfile(Long id);
 }

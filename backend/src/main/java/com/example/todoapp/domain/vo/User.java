@@ -1,10 +1,12 @@
 package com.example.todoapp.domain.vo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
     private Long id;
     private String firstName;

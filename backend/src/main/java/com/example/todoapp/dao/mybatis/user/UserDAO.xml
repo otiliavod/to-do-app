@@ -14,4 +14,17 @@
         select email from users
         where email = #{email}
     </select>
+    <select id="findByUsername" parameterType="String" resultType="User">
+        select * from users
+        where username = #{username}
+    </select>
+     <update id="updateProfile" parameterType="User">
+        update users
+        set first_name = #{firstName}, last_name = #{lastName}, password = #{password}
+        where id = #{id}
+    </update>
+    <delete id="deleteProfile" parameterType="Long">
+        delete from users
+        where id = #{id}
+    </delete>
 </mapper>

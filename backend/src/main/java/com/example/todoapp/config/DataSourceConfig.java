@@ -7,15 +7,15 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-public class LocalDataSourceConfig {
+public class DataSourceConfig {
     private String username;
     private String password;
     private String url;
 
-    public LocalDataSourceConfig(
-            @Value("${local.datasource.username}") String username,
-            @Value("${local.datasource.password}") String password,
-            @Value("${local.datasource.url}") String url){
+    public DataSourceConfig(
+            @Value("${spring.datasource.username}") String username,
+            @Value("${spring.datasource.password}") String password,
+            @Value("${spring.datasource.url}") String url){
         this.username = username;
         this.password = password;
         this.url = url;
@@ -42,6 +42,5 @@ public class LocalDataSourceConfig {
         dataSource.setRemoveAbandonedTimeout(300);
         dataSource.setLogAbandoned(true);
         return dataSource;
-
     }
 }
