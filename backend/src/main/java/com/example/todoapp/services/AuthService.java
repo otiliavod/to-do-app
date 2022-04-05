@@ -1,29 +1,36 @@
 package com.example.todoapp.services;
 
-import com.example.todoapp.domain.dto.SigninRequest;
-import com.example.todoapp.domain.logic.CustomUserDetails;
-import com.example.todoapp.domain.vo.User;
+import com.example.todoapp.config.JwtTokenUtil;
+import com.example.todoapp.domain.logic.JwtResponse;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthService implements UserDetailsService {
-    SignUpService signUpService;
+public class AuthService {
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtUserDetailService jwtUserDetailService;
 
-    AuthService(SignUpService signUpService){
-        this.signUpService = signUpService;
+    public AuthService(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailService jwtUserDetailService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.jwtUserDetailService = jwtUserDetailService;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = signUpService.findByUsername(username);
-        if(user == null) {
-            throw new UsernameNotFoundException("User not found");
+    public JwtResponse authenticate(String username, String password) throws Exception{
+        try{
+            this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+            final UserDetails userDetails = this.jwtUserDetailService.loadUserByUsername(username);
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            return new JwtResponse(token, username);
+        } catch (DisabledException e) {
+            throw new Exception("USER_DISABLED", e);
+        } catch (BadCredentialsException e) {
+            throw new Exception("INVALID_CREDENTIALS", e);
         }
-        return new CustomUserDetails(user);
     }
 }

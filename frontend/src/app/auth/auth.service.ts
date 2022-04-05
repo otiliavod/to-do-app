@@ -20,7 +20,8 @@ interface SigninCredentials {
   password: string;
 }
 
-interface SigninResponse {
+interface JwtToken {
+  token: string;
   username: string;
 }
 
@@ -47,27 +48,24 @@ export class AuthService {
     return this.http.get<string>(`${this.baseUrl}/checkEmail/${email}`);
   }
 
-  signup(credentials: SignupCredentials) {
+  signUp(credentials: SignupCredentials) {
     return this.http.post<SignupResponse>(
       `${this.baseUrl}/signUp`,
       credentials
     );
   }
 
-  signin(credentials: SigninCredentials) {
+  signIn(credentials: SigninCredentials) {
     return this.http
-      .post<SigninResponse>(
-        `${this.baseUrl}/authenticate/signIn`,
-        credentials,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      .post<JwtToken>(`${this.baseUrl}/authenticate/signIn`, credentials, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       .pipe(
-        tap(({ username }) => {
+        tap(({ token, username }) => {
           this.signedin$.next(true);
+          localStorage.setItem('token', token);
           this.username = username;
         })
       );

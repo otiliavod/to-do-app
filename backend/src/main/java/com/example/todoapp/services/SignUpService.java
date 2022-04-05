@@ -54,8 +54,4 @@ public class SignUpService {
             return ResponseEntity.ok(foundEmail);
         }
     }
-
-    public User findByUsername(String username) {
-        return this.userDao.findByUsername(username);
-    }
 }

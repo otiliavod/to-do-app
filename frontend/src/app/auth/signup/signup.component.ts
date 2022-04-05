@@ -66,7 +66,7 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    this.authService.signup(this.authForm.value).subscribe({
+    this.authService.signUp(this.authForm.value).subscribe({
       next: () => {
         // this.router.navigateByUrl('');
       },

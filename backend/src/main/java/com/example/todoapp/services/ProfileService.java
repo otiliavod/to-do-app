@@ -13,11 +13,9 @@ public class ProfileService {
     public ProfileService(UserDAO userDao) {
         this.userDao = userDao;
     }
-
     public void updateProfile(User user) {
         this.userDao.updateProfile(user);
     }
-
     public void deleteProfile(Long id) {
         this.userDao.deleteProfile(id);
     }

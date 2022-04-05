@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
       return;
     }
 
-    this.authService.signin(this.authForm.value).subscribe({
+    this.authService.signIn(this.authForm.value).subscribe({
       next: () => {
         this.router.navigateByUrl('/tasks');
       },

@@ -1,13 +1,22 @@
 package com.example.todoapp.controllers;
 
-import com.example.todoapp.domain.vo.User;
+import com.example.todoapp.domain.logic.JwtRequest;
+import com.example.todoapp.services.AuthService;
+import com.example.todoapp.services.JwtUserDetailService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/authenticate")
 public class AuthController {
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
     @PostMapping("/signIn")
-    public String signIn(@RequestBody User user) {
-        return user.getUsername();
+    public ResponseEntity<?> signIn(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        return ResponseEntity.ok(this.authService.authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
     }
 }
