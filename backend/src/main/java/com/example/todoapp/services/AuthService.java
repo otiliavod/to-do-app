@@ -1,7 +1,10 @@
 package com.example.todoapp.services;
 
+import com.example.todoapp.domain.dto.SigninRequest;
 import com.example.todoapp.domain.logic.CustomUserDetails;
 import com.example.todoapp.domain.vo.User;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

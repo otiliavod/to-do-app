@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/ToDoAppDB
+    driver-class-name: org.postgresql.Driver
+    tomcat:
+      access-to-underlying-connection-allowed: true
+      max-active: 20
+      max-idle: 20
+      max-wait: 10000
+      time-between-eviction-runs-millis: 300000
+      min-evictable-idle-time-millis: 600000
+      remove-abandoned: true
+      remove-abandoned-timeout: 300
+      log-abandoned: true
+server:
+  port: 8080

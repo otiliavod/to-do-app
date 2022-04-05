@@ -56,7 +56,15 @@ export class AuthService {
 
   signin(credentials: SigninCredentials) {
     return this.http
-      .post<SigninResponse>(`${this.baseUrl}/authenticate/signIn`, credentials)
+      .post<SigninResponse>(
+        `${this.baseUrl}/authenticate/signIn`,
+        credentials,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       .pipe(
         tap(({ username }) => {
           this.signedin$.next(true);
