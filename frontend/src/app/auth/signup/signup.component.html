@@ -1,33 +1,45 @@
-<div class="container is-max-desktop">
-  <h3 class="title is-3">Create an account</h3>
+<div class="container container-modal">
+  <h3 class="title is-3 has-text-centered">Create an account</h3>
   <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
-    <app-input
-      label="First Name"
-      [control]="authForm.get('firstName')"
-    ></app-input>
-    <app-input
-      label="Last Name"
-      [control]="authForm.get('lastName')"
-    ></app-input>
-    <app-input
-      label="Username"
-      [control]="authForm.get('username')"
-    ></app-input>
-    <app-input
-      label="Email"
-      inputType="email"
-      [control]="authForm.get('email')"
-    ></app-input>
-    <app-input
-      label="Password"
-      inputType="password"
-      [control]="authForm.get('password')"
-    ></app-input>
-    <app-input
-      label="Password Confirmation"
-      inputType="password"
-      [control]="authForm.get('passwordConfirmation')"
-    ></app-input>
+    <div class="m-b-22">
+      <app-input
+        label="First Name"
+        [control]="authForm.get('firstName')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Last Name"
+        [control]="authForm.get('lastName')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Username"
+        [control]="authForm.get('username')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Email"
+        inputType="email"
+        [control]="authForm.get('email')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Password"
+        inputType="password"
+        [control]="authForm.get('password')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Password Confirmation"
+        inputType="password"
+        [control]="authForm.get('passwordConfirmation')"
+      ></app-input>
+    </div>
     <div
       class="help is-danger"
       *ngIf="
@@ -52,6 +64,6 @@
         User or email is already in use
       </p>
     </div>
-    <button class="button is-primary">Sign Up</button>
+    <button class="button button-modal is-primary">Sign Up</button>
   </form>
 </div>

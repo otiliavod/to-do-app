@@ -1,0 +1,15 @@
+.list-item {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: black !important;
+}
+
+:host {
+  /* background-color: hsl(48, 100%, 96%); */
+}
+
+hr {
+  border: 0;
+  /* border-top: 1px solid rgb(255, 255, 255); */
+}

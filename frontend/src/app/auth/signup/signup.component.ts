@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
 
     this.authService.signUp(this.authForm.value).subscribe({
       next: () => {
-        // this.router.navigateByUrl('');
+        this.authService.signIn(this.authForm.value).subscribe();
       },
       error: (err) => {
         const { userAlreadyInUse, emailAlreadyInUse } = err.error;

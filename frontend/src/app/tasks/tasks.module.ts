@@ -5,17 +5,16 @@ import { TasksRoutingModule } from './tasks-routing.module';
 import { TasksHomeComponent } from './tasks-home/tasks-home.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { TasksDetailsComponent } from './tasks-details/tasks-details.component';
-
+import { TaskCreateComponent } from './task-create/task-create.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     TasksHomeComponent,
     TasksListComponent,
-    TasksDetailsComponent
+    TasksDetailsComponent,
+    TaskCreateComponent,
   ],
-  imports: [
-    CommonModule,
-    TasksRoutingModule
-  ]
+  imports: [CommonModule, TasksRoutingModule, SharedModule],
 })
-export class TasksModule { }
+export class TasksModule {}

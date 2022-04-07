@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { of, tap } from 'rxjs';
+import { JWTTokenService } from './jwttoken.service';
+import { LocalStorageService } from './local-storage.service';
 
 interface SignupCredentials {
   firstName: string;
@@ -22,12 +25,6 @@ interface SigninCredentials {
 
 interface JwtToken {
   token: string;
-  username: string;
-}
-
-interface SignedinResponse {
-  authenticated: boolean;
-  username: string;
 }
 
 @Injectable({
@@ -35,10 +32,13 @@ interface SignedinResponse {
 })
 export class AuthService {
   baseUrl = 'http://localhost:8080';
-  signedin$ = new BehaviorSubject(null);
-  username = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private localStorageService: LocalStorageService,
+    private jwtTokenService: JWTTokenService
+  ) {}
 
   usernameAvailable(username: string) {
     return this.http.get<string>(`${this.baseUrl}/checkUsername/${username}`);
@@ -63,20 +63,20 @@ export class AuthService {
         },
       })
       .pipe(
-        tap(({ token, username }) => {
-          this.signedin$.next(true);
-          localStorage.setItem('token', token);
-          this.username = username;
+        tap(({ token }) => {
+          this.localStorageService.set('token', token);
+          this.jwtTokenService.setToken(token);
         })
       );
   }
 
-  checkAuth() {
-    return this.http.get<SignedinResponse>(`${this.baseUrl}/signedin`).pipe(
-      tap(({ authenticated, username }) => {
-        this.signedin$.next(authenticated);
-        this.username = username;
-      })
-    );
+  isAuthenticated() {
+    if (this.jwtTokenService.getUser()) {
+      if (this.jwtTokenService.isTokenExpired()) {
+        return false;
+      }
+      return true;
+    }
+    return false;
   }
 }

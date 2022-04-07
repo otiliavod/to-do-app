@@ -1,25 +1,29 @@
-<div class="container is-max-desktop">
-  <h3 class="title is-3">Sign In</h3>
+<div class="container container-modal">
+  <h3 class="title is-3 has-text-centered">Sign In</h3>
   <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
-    <app-input
-      label="Username"
-      [control]="authForm.get('username')"
-    ></app-input>
-    <app-input
-      inputType="password"
-      label="Password"
-      [control]="authForm.get('password')"
-    ></app-input>
+    <div class="m-b-22">
+      <app-input
+        label="Username"
+        [control]="authForm.get('username')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        inputType="password"
+        label="Password"
+        [control]="authForm.get('password')"
+      ></app-input>
+    </div>
     <div class="help is-danger" *ngIf="authForm.errors">
       <p *ngIf="authForm.errors['credentials']">Invalid username or password</p>
     </div>
     <div>
-      <button class="button is-primary">Sign In</button>
+      <button class="button button-modal is-primary">Sign In</button>
     </div>
     <div class="account">
       <p>Don't have an account?</p>
       <a
-        class="button is-primary is-light"
+        class="button button-modal is-primary is-light"
         routerLink="/signup"
         routerLinkActive="active"
         >Sign Up</a

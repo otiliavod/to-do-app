@@ -1,1 +1,4 @@
-<p>tasks-details works!</p>
+<div *ngIf="task">
+  <div>{{ task.taskTitle }}</div>
+  <div>{{ task.taskDescription }}</div>
+</div>
