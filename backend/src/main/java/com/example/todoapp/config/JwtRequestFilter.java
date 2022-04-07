@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.todoapp.services.JwtUserDetailService;
+import com.example.todoapp.utils.JwtTokenUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +20,11 @@ import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    private final JwtUserDetailService authService;
+    private final JwtUserDetailService jwtUserDetailService;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public JwtRequestFilter(JwtUserDetailService authService, JwtTokenUtil jwtTokenUtil) {
-        this.authService = authService;
+    public JwtRequestFilter(JwtUserDetailService jwtUserDetailService, JwtTokenUtil jwtTokenUtil) {
+        this.jwtUserDetailService = jwtUserDetailService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -53,7 +54,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = this.authService.loadUserByUsername(username);
+            UserDetails userDetails = this.jwtUserDetailService.loadUserByUsername(username);
 
             // if token is valid configure Spring Security to manually set
             // authentication

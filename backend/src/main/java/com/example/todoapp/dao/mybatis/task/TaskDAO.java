@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface TaskDAO {
-     List<Task> getUserTasks(Long userId);
+     List<Task> getUserTasks(String username);
      void addUserTask(Task task);
      void updateTask(Task task);
      Task getTaskById(Long id);

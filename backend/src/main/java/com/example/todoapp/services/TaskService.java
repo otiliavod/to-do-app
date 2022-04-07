@@ -14,8 +14,8 @@ public class TaskService {
         this.taskDao = taskDao;
     }
 
-    public List<Task> getUserTasks(Long userId) {
-        return this.taskDao.getUserTasks(userId);
+    public List<Task> getUserTasks(String username) {
+        return this.taskDao.getUserTasks(username);
     }
 
     public void addUserTask(Task task) {
@@ -28,5 +28,9 @@ public class TaskService {
 
     public void deleteTask(Long id) {
         this.taskDao.deleteTask(id);
+    }
+
+    public Task getTaskById(Long id) {
+        return this.taskDao.getTaskById(id);
     }
 }

@@ -3,6 +3,7 @@ package com.example.todoapp.controllers;
 import com.example.todoapp.domain.vo.Task;
 import com.example.todoapp.services.TaskService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +17,18 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping(path="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Task> getUserTasks(@PathVariable Long userId) {
-      return this.taskService.getUserTasks(userId);
+    @GetMapping(path="/getUserTasks/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<Task> getUserTasks(@PathVariable String username) {
+      return this.taskService.getUserTasks(username);
+    }
+
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        Task task = this.taskService.getTaskById(id);
+        if(task != null) {
+            return ResponseEntity.ok(task);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping(path="/")

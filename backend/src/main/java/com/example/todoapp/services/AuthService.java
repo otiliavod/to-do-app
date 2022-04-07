@@ -1,6 +1,7 @@
 package com.example.todoapp.services;
 
-import com.example.todoapp.config.JwtTokenUtil;
+import com.example.todoapp.domain.logic.CustomUserDetails;
+import com.example.todoapp.utils.JwtTokenUtil;
 import com.example.todoapp.domain.logic.JwtResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,9 +25,9 @@ public class AuthService {
     public JwtResponse authenticate(String username, String password) throws Exception{
         try{
             this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-            final UserDetails userDetails = this.jwtUserDetailService.loadUserByUsername(username);
+            final CustomUserDetails userDetails = this.jwtUserDetailService.loadUserByUsername(username);
             final String token = jwtTokenUtil.generateToken(userDetails);
-            return new JwtResponse(token, username);
+            return new JwtResponse(token);
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {

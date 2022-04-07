@@ -10,10 +10,10 @@
         <result property="userId" column="user_id" />
     </resultMap>
 
-    <select id="getUserTasks" parameterType="Long" resultMap="taskList">
+    <select id="getUserTasks" parameterType="String" resultMap="taskList">
         select username,tasks.id,title,description,status,user_id from users
         join tasks on tasks.user_id = users.id
-        where users.id = #{userId}
+        where username = #{username}
         order by status desc
     </select>
 
@@ -29,7 +29,7 @@
     </update>
 
     <select id="getTaskById" parameterType="Long" resultType="Task">
-        select id,title,description,status,user_id from tasks
+        select id,title as taskTitle,description as taskDescription,status,user_id as userId from tasks
         where id = #{id}
     </select>
 
