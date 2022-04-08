@@ -22,11 +22,7 @@
   <div class="m-b-22">
     <h3 class="title is-6">Status</h3>
     <div class="rlt">
-      <select
-        class="input"
-        [disabled]="!isEditable"
-        [formControl]="detailsGroup.get('status')"
-      >
+      <select class="input" [formControl]="detailsGroup.get('status')">
         <option value="1">In progress</option>
         <option value="0">Completed</option>
       </select>
