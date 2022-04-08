@@ -1,21 +1,19 @@
-<ng-container *ngIf="showHeader">
-  <div class="c-flex">
+<div class="c-flex">
+  <div>
+    <h3 class="title is-5">Hi, {{ username }}</h3>
+  </div>
+  <div class="buttons">
     <div>
-      <h3 class="title is-5">Hi, {{ username }}</h3>
+      <button class="button h-btn">
+        <fa-icon icon="user"></fa-icon>
+        <strong class="m-l-5">Profile</strong>
+      </button>
     </div>
-    <div class="buttons">
-      <div>
-        <button class="button h-btn">
-          <fa-icon icon="user"></fa-icon>
-          <strong class="m-l-5">Profile</strong>
-        </button>
-      </div>
-      <div>
-        <button class="button h-btn" (click)="onClickSignOut()">
-          <fa-icon icon="arrow-right-from-bracket"></fa-icon>
-          <strong class="m-l-5">Sign out</strong>
-        </button>
-      </div>
+    <div>
+      <button class="button h-btn" (click)="signOut()">
+        <fa-icon icon="arrow-right-from-bracket"></fa-icon>
+        <strong class="m-l-5">Sign out</strong>
+      </button>
     </div>
   </div>
-</ng-container>
+</div>

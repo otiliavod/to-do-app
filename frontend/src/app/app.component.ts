@@ -9,5 +9,21 @@ import { JWTTokenService } from './auth/jwttoken.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'todo';
+  showHeader = false;
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.modifyHeader(event);
+      });
+  }
+
+  modifyHeader(location) {
+    if (location.url === '/') {
+      this.showHeader = false;
+    } else {
+      this.showHeader = true;
+    }
+  }
 }

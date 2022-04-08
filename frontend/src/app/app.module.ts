@@ -8,7 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
-
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
