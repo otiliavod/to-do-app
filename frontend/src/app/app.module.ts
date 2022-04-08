@@ -6,15 +6,8 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
-import {
-  FontAwesomeModule,
-  FaIconLibrary,
-} from '@fortawesome/angular-fontawesome';
-import {
-  faUser,
-  faArrowRightFromBracket,
-} from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from './header/header.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -23,15 +16,11 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    FontAwesomeModule,
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(library: FaIconLibrary) {
-    library.addIcons(faUser, faArrowRightFromBracket);
-  }
-}
+export class AppModule {}

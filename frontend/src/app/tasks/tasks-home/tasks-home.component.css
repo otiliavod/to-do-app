@@ -1,7 +1,14 @@
 h3 {
-  margin-top: 50px;
+  margin-top: 44px;
 }
 
-.columns {
-  margin-top: 50px;
+.t-flex {
+  margin-bottom: 12px;
+}
+
+.t-icon {
+  font-size: 28px;
+  position: absolute;
+  top: 12px;
+  left: 15px;
 }

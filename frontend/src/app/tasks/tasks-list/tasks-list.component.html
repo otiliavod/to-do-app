@@ -1,5 +1,12 @@
 <div class="list" *ngFor="let task of tasks">
-  <a [routerLink]="task.id" routerLinkActive="active">
-    <div class="list-item has-text-grey"></div>
-  </a>
+  <div
+    [routerLink]="task.id"
+    routerLinkActive="list-item-active"
+    class="list-item has-text-grey"
+  >
+    <div>{{ task.taskTitle }}</div>
+    <button class="button btn-n-m">
+      <fa-icon icon="trash"></fa-icon>
+    </button>
+  </div>
 </div>

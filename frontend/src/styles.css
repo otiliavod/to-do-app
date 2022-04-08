@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bulma/css/bulma.min.css";
 
+body,
+.title,
+.button {
+  color: #444;
+}
+
 .container-modal {
   padding-top: 43px;
   padding-bottom: 43px;
@@ -18,8 +24,12 @@
   display: flex;
   justify-content: space-between;
   background-color: #f4e0d4;
-  color: 444;
   align-items: center;
+}
+
+.t-flex {
+  display: flex;
+  align-items: baseline;
 }
 
 .h-btn {
@@ -27,6 +37,9 @@
   background-color: #f4e0d4;
 }
 
+.btn-n-m {
+  border: none;
+}
 /********** MARGINS *********/
 
 .m-t-10 {

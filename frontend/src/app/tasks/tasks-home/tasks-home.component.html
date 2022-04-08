@@ -1,8 +1,13 @@
 <div class="container">
-  <!-- <h3 class="title is-3 has-text-grey-dark">Your tasks</h3> -->
-  <app-task-create> </app-task-create>
+  <div class="t-flex">
+    <h3 class="title is-4 has-text-grey-dark">Your tasks</h3>
+    <button class="button btn-n-m has-text-primary">
+      <fa-icon class="t-icon" icon="circle-plus"></fa-icon>
+    </button>
+  </div>
+  <!-- <app-task-create> </app-task-create> -->
   <div class="columns">
-    <app-tasks-list class="column is-6"></app-tasks-list>
-    <app-tasks-details class="column is-6"></app-tasks-details>
+    <app-tasks-list class="column"></app-tasks-list>
+    <app-tasks-details class="column"></app-tasks-details>
   </div>
 </div>

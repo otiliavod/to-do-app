@@ -8,13 +8,19 @@ import { Task } from '../models/task';
   styleUrls: ['./tasks-details.component.css'],
 })
 export class TasksDetailsComponent implements OnInit {
-  task: Task;
+  task: Task = {
+    id: 2,
+    taskTitle: 'Clean',
+    taskDescription: 'Clean the kitchen',
+    status: 1,
+    userId: 1,
+  };
 
   constructor(private route: ActivatedRoute) {
-    this.task = route.snapshot.data['task'];
-    this.route.data.subscribe(({ task }) => {
-      this.task = task;
-    });
+    // this.task = route.snapshot.data['task'];
+    // this.route.data.subscribe(({ task }) => {
+    //   this.task = task;
+    // });
   }
 
   ngOnInit(): void {}
