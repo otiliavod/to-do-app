@@ -1,11 +1,5 @@
 <div class="list" *ngFor="let task of tasks">
   <a [routerLink]="task.id" routerLinkActive="active">
-    <div class="list-item has-text-grey">
-      <p>{{ task.taskTitle }}</p>
-      <div class="buttons">
-        <a (click)="onClickDelete()" class="tag is-delete"></a>
-      </div>
-    </div>
-    <hr />
+    <div class="list-item has-text-grey"></div>
   </a>
 </div>
