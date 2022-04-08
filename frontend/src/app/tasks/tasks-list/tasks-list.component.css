@@ -6,21 +6,17 @@
   color: #444 !important;
   border: 1px solid #ccc;
   align-items: center;
+  border-radius: 4px;
 }
 
 .list:not(:last-child) {
   margin-bottom: 22px;
 }
 
-.list {
-  width: 550px;
-  max-height: 750px;
-  overflow: scroll;
-}
-
 .button {
   visibility: hidden;
   padding-right: 0;
+  background-color: transparent;
 }
 
 .list-item:hover .button {

@@ -7,6 +7,7 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { TasksDetailsComponent } from './tasks-details/tasks-details.component';
 import { TaskCreateComponent } from './task-create/task-create.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,11 @@ import { SharedModule } from '../shared/shared.module';
     TasksDetailsComponent,
     TaskCreateComponent,
   ],
-  imports: [CommonModule, TasksRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    TasksRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
 export class TasksModule {}

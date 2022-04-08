@@ -1,13 +1,24 @@
 <div class="container">
-  <div class="t-flex">
-    <h3 class="title is-4 has-text-grey-dark">Your tasks</h3>
-    <button class="button btn-n-m has-text-primary">
-      <fa-icon class="t-icon" icon="circle-plus"></fa-icon>
-    </button>
+  <div class="columns is-centered p-0">
+    <div class="column is-two-fifths">
+      <div class="t-flex">
+        <h3 class="title is-4 has-text-grey-dark">Your tasks</h3>
+        <button class="button btn-n-m has-text-primary">
+          <fa-icon class="t-icon" icon="circle-plus"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <div class="column is-two-fifths"></div>
   </div>
+
   <!-- <app-task-create> </app-task-create> -->
-  <div class="columns">
-    <app-tasks-list class="column"></app-tasks-list>
-    <app-tasks-details class="column"></app-tasks-details>
+  <div class="columns is-centered">
+    <app-tasks-list
+      class="column is-two-fifths"
+      [tasks]="tasks"
+    ></app-tasks-list>
+    <div class="column is-two-fifths">
+      <router-outlet (changedTask)="updatedTask($event)"></router-outlet>
+    </div>
   </div>
 </div>

@@ -12,6 +12,8 @@ import {
   faArrowRightFromBracket,
   faCirclePlus,
   faTrash,
+  faPenToSquare,
+  faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
@@ -21,6 +23,13 @@ import {
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faUser, faArrowRightFromBracket, faCirclePlus, faTrash);
+    library.addIcons(
+      faUser,
+      faArrowRightFromBracket,
+      faCirclePlus,
+      faTrash,
+      faPenToSquare,
+      faAngleDown
+    );
   }
 }

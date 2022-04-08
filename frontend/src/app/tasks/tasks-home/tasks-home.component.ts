@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-tasks-home',
@@ -6,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks-home.component.css'],
 })
 export class TasksHomeComponent implements OnInit {
-  constructor() {}
+  tasks = [];
+  constructor(private tasksService: TasksService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tasksService.getUserTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+    });
+  }
 
-  onClick() {}
+  updatedTask(event) {
+    console.log(event);
+  }
 }

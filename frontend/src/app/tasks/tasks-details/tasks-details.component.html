@@ -1,4 +1,48 @@
-<div *ngIf="task">
-  <div>{{ task.taskTitle }}</div>
-  <div>{{ task.taskDescription }}</div>
+<div class="t-details" [formGroup]="detailsGroup">
+  <div class="c-flex">
+    <h5 class="title is-5 has-text-grey-dark">Task Details</h5>
+    <div class="btns">
+      <button class="button btn-n-m" (click)="setEditable(true)">
+        <fa-icon icon="pen-to-square"></fa-icon>
+      </button>
+      <button class="button btn-n-m">
+        <fa-icon icon="trash"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="m-b-22">
+    <h3 class="title is-6">Title</h3>
+    <input
+      class="input"
+      [readonly]="!isEditable"
+      [formControl]="detailsGroup.get('title')"
+    />
+  </div>
+  <div class="m-b-22">
+    <h3 class="title is-6">Status</h3>
+    <div class="rlt">
+      <select
+        class="input"
+        [disabled]="!isEditable"
+        [formControl]="detailsGroup.get('status')"
+      >
+        <option value="1">In progress</option>
+        <option value="0">Completed</option>
+      </select>
+      <fa-icon class="abs" icon="angle-down"></fa-icon>
+    </div>
+  </div>
+  <div class="m-b-22">
+    <h3 class="title is-6">Description</h3>
+    <textarea
+      class="input"
+      [readonly]="!isEditable"
+      [formControl]="detailsGroup.get('description')"
+    ></textarea>
+  </div>
+  <div class="buttons" *ngIf="isEditable">
+    <button class="button is-primary svbtn" (click)="saveForm()">Save</button>
+    <button class="button" (click)="cancelEditable()">Cancel</button>
+  </div>
 </div>
