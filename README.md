@@ -12,6 +12,7 @@ https://www.figma.com/file/FAheKSCyohK0jGPyD7W5tJ/To-Do-Application?node-id=0%3A
 ## Technologies
 - Spring Boot
 - JWT Authentication
+- CORS Filter
 - Mybatis
 - PostgreSql
 - BCryptPasswordEncoder
