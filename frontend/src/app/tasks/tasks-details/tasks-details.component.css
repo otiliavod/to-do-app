@@ -28,17 +28,6 @@
   margin-bottom: 12px;
 }
 
-.rlt {
-  position: relative;
-  max-width: 130px;
-}
-
-.abs {
-  position: absolute;
-  right: 15px;
-  top: 8px;
-}
-
 textarea {
   height: 250px;
 }

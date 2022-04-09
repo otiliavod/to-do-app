@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { TasksService } from '../tasks.service';
+import { TaskUtilsService } from '../task-utils.service';
 
 @Component({
   selector: 'app-tasks-list',
@@ -10,11 +9,9 @@ import { TasksService } from '../tasks.service';
 export class TasksListComponent {
   @Input() tasks = [];
 
-  constructor(private tasksService: TasksService, private router: Router) {}
+  constructor(private taskUtils: TaskUtilsService) {}
 
   deleteTask(id: number) {
-    this.tasksService.deleteTask(id);
-    this.tasksService.setDeletedTask(id);
-    this.router.navigateByUrl('/tasks');
+    this.taskUtils.deleteTask(id);
   }
 }

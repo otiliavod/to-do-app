@@ -1,6 +1,6 @@
 <div class="list" *ngFor="let task of tasks">
   <div
-    [routerLink]="task.id"
+    [routerLink]="'details/' + task.id"
     routerLinkActive="list-item-active"
     class="list-item has-text-grey"
   >

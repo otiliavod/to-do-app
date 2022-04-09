@@ -15,6 +15,7 @@ export class TasksService {
   baseUrl = 'http://localhost:8080/tasks';
   updatedTask = new BehaviorSubject(null);
   deletedTask = new BehaviorSubject(null);
+  addedTask = new BehaviorSubject(null);
 
   constructor(
     private http: HttpClient,
@@ -57,5 +58,13 @@ export class TasksService {
 
   setDeletedTask(id: number) {
     this.deletedTask.next(id);
+  }
+
+  getAddedTask() {
+    return this.addedTask;
+  }
+
+  setAddedTask(task: Task) {
+    this.addedTask.next(task);
   }
 }

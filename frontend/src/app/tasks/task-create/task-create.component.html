@@ -1,5 +1,4 @@
-<div class="colums">
-  <div class="column">
+<!-- <div class="column">
     <div class="t-flex">
       <h3 class="title is-5 has-text-grey-dark">
         Add your first task by pressing
@@ -8,38 +7,35 @@
         <fa-icon class="t-icon" icon="circle-plus"></fa-icon>
       </button>
     </div>
+  </div> -->
+<div class="t-create" [formGroup]="taskGroup">
+  <div class="m-b-22">
+    <h5 class="title is-5 has-text-grey-dark">New Task</h5>
   </div>
-  <div class="column">
-    <div class="t-create" [formGroup]="taskGroup">
-      <div class="c-flex">
-        <h5 class="title is-5 has-text-grey-dark">New Task</h5>
-      </div>
 
-      <div class="m-b-22">
-        <h3 class="title is-6">Title</h3>
-        <input class="input" [formControl]="taskGroup.get('title')" />
-      </div>
-      <div class="m-b-22">
-        <h3 class="title is-6">Status</h3>
-        <div class="rlt">
-          <select class="input" [formControl]="taskGroup.get('status')">
-            <option value="1">In progress</option>
-            <option value="0">Completed</option>
-          </select>
-          <fa-icon class="abs" icon="angle-down"></fa-icon>
-        </div>
-      </div>
-      <div class="m-b-22">
-        <h3 class="title is-6">Description</h3>
-        <textarea
-          class="input"
-          [formControl]="taskGroup.get('description')"
-        ></textarea>
-      </div>
-      <div class="buttons">
-        <button class="button is-primary svbtn">Save</button>
-        <button class="button">Cancel</button>
-      </div>
+  <div class="m-b-22">
+    <h3 class="title is-6">Title</h3>
+    <input class="input" [formControl]="taskGroup.get('title')" />
+  </div>
+  <div class="m-b-22">
+    <h3 class="title is-6">Status</h3>
+    <div class="rlt">
+      <select class="input" [formControl]="taskGroup.get('status')">
+        <option value="1">In progress</option>
+        <option value="0">Completed</option>
+      </select>
+      <fa-icon class="abs" icon="angle-down"></fa-icon>
     </div>
+  </div>
+  <div class="m-b-22">
+    <h3 class="title is-6">Description</h3>
+    <textarea
+      class="input"
+      [formControl]="taskGroup.get('description')"
+    ></textarea>
+  </div>
+  <div class="buttons">
+    <button class="button is-primary svbtn" (click)="save()">Save</button>
+    <button class="button" (click)="cancel()">Cancel</button>
   </div>
 </div>

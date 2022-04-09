@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../models/task';
+import { TaskUtilsService } from '../task-utils.service';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class TasksDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private taskService: TasksService,
+    private taskUtils: TaskUtilsService,
     private router: Router
   ) {
     this.task = route.snapshot.data['task'];
@@ -44,14 +46,16 @@ export class TasksDetailsComponent {
   }
 
   cancelEditable() {
-    let titleFormControl = this.detailsGroup.get('title');
-    let statusFormControl = this.detailsGroup.get('status');
-    let descriptionFormControl = this.detailsGroup.get('description');
+    // Reset to default values
+    // let titleFormControl = this.detailsGroup.get('title');
+    // let statusFormControl = this.detailsGroup.get('status');
+    // let descriptionFormControl = this.detailsGroup.get('description');
 
-    this.setEditable(false);
-    titleFormControl.patchValue(this.task.taskTitle);
-    statusFormControl.patchValue(this.task.status);
-    descriptionFormControl.patchValue(this.task.taskDescription);
+    // this.setEditable(false);
+    // titleFormControl.patchValue(this.task.taskTitle);
+    // statusFormControl.patchValue(this.task.status);
+    // descriptionFormControl.patchValue(this.task.taskDescription);
+    this.router.navigateByUrl('/tasks');
   }
 
   saveForm() {
@@ -61,11 +65,10 @@ export class TasksDetailsComponent {
     this.taskService.updateTask(this.task).subscribe();
     this.setEditable(false);
     this.taskService.changedTask(this.task);
+    this.router.navigateByUrl('/tasks');
   }
 
   deleteTask() {
-    this.taskService.deleteTask(this.task.id);
-    this.taskService.setDeletedTask(this.task.id);
-    this.router.navigateByUrl('/tasks');
+    this.taskUtils.deleteTask(this.task.id);
   }
 }

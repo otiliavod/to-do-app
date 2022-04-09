@@ -40,7 +40,7 @@ export class JWTTokenService {
 
   getUserId() {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken['userId'] : null;
+    return this.decodedToken ? parseInt(this.decodedToken['userId']) : null;
   }
 
   getEmailId() {

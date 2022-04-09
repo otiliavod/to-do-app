@@ -40,6 +40,17 @@ body,
 .btn-n-m {
   border: none;
 }
+
+.rlt {
+  position: relative;
+  max-width: 130px;
+}
+
+.abs {
+  position: absolute;
+  right: 15px;
+  top: 8px;
+}
 /********** MARGINS *********/
 
 .m-t-10 {
@@ -52,4 +63,8 @@ body,
 
 .m-b-22 {
   margin-bottom: 22px;
+}
+
+.m-b-5 {
+  margin-bottom: 5px;
 }

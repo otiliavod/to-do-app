@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { TasksService } from '../tasks.service';
 
@@ -12,9 +13,11 @@ export class TasksHomeComponent implements OnInit {
   tasks = [];
   updatedTask: Subscription;
   deletedTask: Subscription;
+  addedTask: Subscription;
   constructor(
     private tasksService: TasksService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +35,9 @@ export class TasksHomeComponent implements OnInit {
     this.deletedTask = this.tasksService.getDeletedTask().subscribe((id) => {
       this.deleteTask(id);
     });
+    this.addedTask = this.tasksService
+      .getAddedTask()
+      .subscribe((task) => this.addTask(task));
   }
 
   updateTask(task) {
@@ -54,5 +60,16 @@ export class TasksHomeComponent implements OnInit {
         this.tasks.splice(crtTaskIdx, 1);
       }
     }
+  }
+
+  addTask(task: Task) {
+    if (task) {
+      this.tasks.push(task);
+    }
+  }
+
+  openCreateTask() {
+    console.log('acc');
+    this.router.navigateByUrl('tasks/create');
   }
 }

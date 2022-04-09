@@ -3,7 +3,11 @@
     <div class="column is-two-fifths">
       <div class="t-flex">
         <h3 class="title is-4 has-text-grey-dark">Your tasks</h3>
-        <button class="button btn-n-m has-text-primary">
+        <button
+          class="button btn-n-m has-text-primary"
+          *ngIf="tasks.length > 0"
+          (click)="openCreateTask()"
+        >
           <fa-icon class="t-icon" icon="circle-plus"></fa-icon>
         </button>
       </div>
