@@ -79,4 +79,11 @@ export class AuthService {
     }
     return false;
   }
+
+  signOutIfExpired() {
+    if (this.jwtTokenService.isTokenExpired()) {
+      this.localStorageService.remove('token');
+      this.router.navigateByUrl('/');
+    }
+  }
 }

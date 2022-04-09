@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../models/task';
 import { TasksService } from '../tasks.service';
 
@@ -10,14 +10,14 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./tasks-details.component.css'],
 })
 export class TasksDetailsComponent {
-  @Output() changedTask = new EventEmitter();
   task: Task;
   isEditable = false;
   detailsGroup: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
-    private taskService: TasksService
+    private taskService: TasksService,
+    private router: Router
   ) {
     this.task = route.snapshot.data['task'];
     this.route.data.subscribe(({ task }) => {
@@ -60,6 +60,12 @@ export class TasksDetailsComponent {
     this.task.taskDescription = this.detailsGroup.get('description').value;
     this.taskService.updateTask(this.task).subscribe();
     this.setEditable(false);
-    this.changedTask.emit(this.task);
+    this.taskService.changedTask(this.task);
+  }
+
+  deleteTask() {
+    this.taskService.deleteTask(this.task.id);
+    this.taskService.setDeletedTask(this.task.id);
+    this.router.navigateByUrl('/tasks');
   }
 }

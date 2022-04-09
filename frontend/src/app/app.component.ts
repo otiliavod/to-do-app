@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { JWTTokenService } from './auth/jwttoken.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,7 @@ export class AppComponent {
   }
 
   modifyHeader(location) {
-    if (location.url === '/') {
+    if (location.url === '/' || location.url === '/signup') {
       this.showHeader = false;
     } else {
       this.showHeader = true;

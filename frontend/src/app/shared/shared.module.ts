@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from './modal/modal.component';
+
 import {
   FontAwesomeModule,
   FaIconLibrary,
@@ -17,7 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
-  declarations: [InputComponent, ModalComponent],
+  declarations: [InputComponent],
   imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   exports: [InputComponent, FontAwesomeModule],
 })

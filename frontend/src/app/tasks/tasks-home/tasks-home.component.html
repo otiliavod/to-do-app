@@ -11,14 +11,14 @@
     <div class="column is-two-fifths"></div>
   </div>
 
-  <!-- <app-task-create> </app-task-create> -->
+  <app-task-create *ngIf="!tasks"> </app-task-create>
   <div class="columns is-centered">
     <app-tasks-list
       class="column is-two-fifths"
       [tasks]="tasks"
     ></app-tasks-list>
     <div class="column is-two-fifths">
-      <router-outlet (changedTask)="updatedTask($event)"></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

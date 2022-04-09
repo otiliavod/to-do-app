@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Task } from '../models/task';
 
 @Component({
@@ -7,8 +8,12 @@ import { Task } from '../models/task';
   styleUrls: ['./task-create.component.css'],
 })
 export class TaskCreateComponent implements OnInit {
-  showModal = false;
   task: Task;
+  taskGroup = new FormGroup({
+    title: new FormControl(),
+    status: new FormControl(),
+    description: new FormControl(),
+  });
 
   constructor() {}
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 import { JWTTokenService } from '../auth/jwttoken.service';
 import { Task } from './models/task';
 
@@ -13,6 +13,8 @@ interface TaskSummary {
 })
 export class TasksService {
   baseUrl = 'http://localhost:8080/tasks';
+  updatedTask = new BehaviorSubject(null);
+  deletedTask = new BehaviorSubject(null);
 
   constructor(
     private http: HttpClient,
@@ -39,5 +41,21 @@ export class TasksService {
 
   deleteTask(id: number) {
     return this.http.delete<Task>(`${this.baseUrl}/${id}`);
+  }
+
+  changedTask(task: Task) {
+    this.updatedTask.next(task);
+  }
+
+  getUpdatedTask() {
+    return this.updatedTask;
+  }
+
+  getDeletedTask() {
+    return this.deletedTask;
+  }
+
+  setDeletedTask(id: number) {
+    this.deletedTask.next(id);
   }
 }
