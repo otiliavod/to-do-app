@@ -32,6 +32,13 @@ body,
   align-items: baseline;
 }
 
+.t-icon {
+  font-size: 28px;
+  position: absolute;
+  top: 12px;
+  left: 15px;
+}
+
 .h-btn {
   border: none;
   background-color: #f4e0d4;

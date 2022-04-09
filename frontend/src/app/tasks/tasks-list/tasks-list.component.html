@@ -1,8 +1,22 @@
-<div class="list" *ngFor="let task of tasks">
+<div class="list">
+  <div
+    [routerLink]="'create'"
+    routerLinkActive="list-item-active"
+    class="list-item has-text-grey color-bg"
+    *ngIf="tasks.length === 0"
+  >
+    <div class="firstTask">
+      <div>Add your first task by pressing</div>
+      <button class="button btn-n-m btn-circle">
+        <fa-icon icon="circle-plus"></fa-icon>
+      </button>
+    </div>
+  </div>
   <div
     [routerLink]="'details/' + task.id"
     routerLinkActive="list-item-active"
     class="list-item has-text-grey"
+    *ngFor="let task of tasks"
   >
     <div>{{ task.taskTitle }}</div>
     <button class="button btn-n-m" (click)="deleteTask(task.id)">

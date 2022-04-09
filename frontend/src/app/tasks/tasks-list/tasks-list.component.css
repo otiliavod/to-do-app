@@ -9,7 +9,7 @@
   border-radius: 4px;
 }
 
-.list:not(:last-child) {
+.list-item:not(:last-of-type) {
   margin-bottom: 22px;
 }
 
@@ -23,6 +23,25 @@
   visibility: visible;
 }
 
-.list-item-active {
+.list-item-active,
+.color-bg {
   background-color: #fdf8f5;
+}
+
+h3 {
+  width: 280px;
+}
+
+.firstTask {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #444;
+}
+
+.btn-circle {
+  visibility: visible;
+  color: #00d1b2;
+  font-size: 28px;
 }

@@ -37,8 +37,14 @@
       [formControl]="detailsGroup.get('description')"
     ></textarea>
   </div>
-  <div class="buttons" *ngIf="isEditable">
-    <button class="button is-primary svbtn" (click)="saveForm()">Save</button>
+  <div class="buttons">
+    <button
+      class="button is-primary svbtn"
+      (click)="saveForm()"
+      [disabled]="!isEditable"
+    >
+      Save
+    </button>
     <button class="button" (click)="cancelEditable()">Cancel</button>
   </div>
 </div>
