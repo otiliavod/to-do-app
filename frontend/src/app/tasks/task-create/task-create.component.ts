@@ -37,8 +37,8 @@ export class TaskCreateComponent implements OnInit {
       task.status = this.taskGroup.get('status').value;
       task.taskDescription = this.taskGroup.get('description').value;
       task.userId = this.jwtTokenService.getUserId();
-      this.tasksService.addTask(task).subscribe(() => {
-        this.tasksService.setAddedTask(task);
+      this.tasksService.addTask(task).subscribe((taskRes) => {
+        this.tasksService.setAddedTask(taskRes);
         this.router.navigateByUrl('/tasks');
       });
     }

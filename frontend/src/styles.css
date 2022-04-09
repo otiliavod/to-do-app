@@ -58,6 +58,11 @@ body,
   right: 15px;
   top: 8px;
 }
+
+.button.is-focused:not(:active),
+.button:focus:not(:active) {
+  box-shadow: none;
+}
 /********** MARGINS *********/
 
 .m-t-10 {

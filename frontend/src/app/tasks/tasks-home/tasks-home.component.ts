@@ -69,7 +69,6 @@ export class TasksHomeComponent implements OnInit {
   }
 
   openCreateTask() {
-    console.log('acc');
     this.router.navigateByUrl('tasks/create');
   }
 }
