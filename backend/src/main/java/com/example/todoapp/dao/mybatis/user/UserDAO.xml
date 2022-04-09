@@ -21,13 +21,13 @@
      <update id="updateProfile" parameterType="User">
         update users
         <set>
-            <if test="firstName != NULL">
+            <if test="firstName !='' ">
                 first_name = #{firstName},
             </if>
-            <if test="lastName != NULL">
+            <if test="lastName != ''">
                 last_name = #{lastName},
             </if>
-            <if test="password != NULL">
+            <if test="password != ''">
                 password = #{password}
             </if>
         </set>

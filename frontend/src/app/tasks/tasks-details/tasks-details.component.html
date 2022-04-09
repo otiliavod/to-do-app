@@ -38,7 +38,7 @@
       [formControl]="detailsGroup.get('description')"
     ></textarea>
   </div>
-  <div class="help is-danger" *ngIf="showErrors()">
+  <div class="help is-danger m-b-5" *ngIf="showErrors()">
     <p *ngIf="detailsGroup.get('title').errors['required']">
       Title is required
     </p>

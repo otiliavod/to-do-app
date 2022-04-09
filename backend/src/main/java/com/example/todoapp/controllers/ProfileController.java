@@ -12,8 +12,9 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @PutMapping(path = "/")
+    @PutMapping
     void updateProfile(@RequestBody User user) {
+
         this.profileService.updateProfile(user);
     }
 

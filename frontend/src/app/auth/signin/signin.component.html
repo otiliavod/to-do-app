@@ -14,7 +14,7 @@
         [control]="authForm.get('password')"
       ></app-input>
     </div>
-    <div class="help is-danger" *ngIf="authForm.errors">
+    <div class="help is-danger m-b-5" *ngIf="authForm.errors">
       <p *ngIf="authForm.errors['credentials']">Invalid username or password</p>
     </div>
     <div>

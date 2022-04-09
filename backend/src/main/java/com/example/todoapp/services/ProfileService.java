@@ -15,7 +15,9 @@ public class ProfileService {
         this.passwordEncoder = passwordEncoder;
     }
     public void updateProfile(User user) {
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        if(!user.getPassword().equals("")){
+            user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        }
         this.userDao.updateProfile(user);
     }
     public void deleteProfile(Long id) {

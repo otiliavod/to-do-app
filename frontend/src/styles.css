@@ -88,3 +88,7 @@ body,
 .list-item:hover {
   cursor: pointer;
 }
+
+.svbtn {
+  margin-right: 12px !important;
+}

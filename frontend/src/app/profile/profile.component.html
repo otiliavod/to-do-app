@@ -1,0 +1,45 @@
+<div class="container container-modal color-bg">
+  <h3 class="title is-3 has-text-centered">Update Your Profile</h3>
+  <div [formGroup]="profileForm">
+    <div class="m-b-22">
+      <app-input
+        label="First Name"
+        [control]="profileForm.get('firstName')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Last Name"
+        [control]="profileForm.get('lastName')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="New Password"
+        inputType="password"
+        [control]="profileForm.get('password')"
+      ></app-input>
+    </div>
+    <div class="m-b-22">
+      <app-input
+        label="Password Confirmation"
+        inputType="password"
+        [control]="profileForm.get('passwordConfirmation')"
+      ></app-input>
+    </div>
+    <div class="help is-danger m-b-5" *ngIf="profileForm.errors">
+      <p *ngIf="profileForm.errors['passwordsDontMatch']">
+        Password and Password Confirmation must match.
+      </p>
+      <p *ngIf="profileForm.errors['noFieldUpdated']">
+        You need to update at least a field.
+      </p>
+    </div>
+    <div class="buttons">
+      <button class="button is-primary svbtn" (click)="saveProfile()">
+        Save
+      </button>
+      <button class="button" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

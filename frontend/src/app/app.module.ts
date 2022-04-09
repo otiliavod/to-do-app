@@ -8,14 +8,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
+import { ProfileComponent } from './profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

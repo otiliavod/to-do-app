@@ -28,7 +28,7 @@
       [formControl]="taskGroup.get('description')"
     ></textarea>
   </div>
-  <div class="help is-danger" *ngIf="showErrors()">
+  <div class="help is-danger m-b-5" *ngIf="showErrors()">
     <p *ngIf="taskGroup.get('title').errors['required']">Title is required</p>
     <p *ngIf="taskGroup.get('title').errors['minlength']">
       Title has to be at least two characters long
