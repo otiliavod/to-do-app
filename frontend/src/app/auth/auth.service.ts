@@ -41,11 +41,13 @@ export class AuthService {
   ) {}
 
   usernameAvailable(username: string) {
-    return this.http.get<string>(`${this.baseUrl}/checkUsername/${username}`);
+    return this.http.get<string>(
+      `${this.baseUrl}/signUp/checkUsername/${username}`
+    );
   }
 
   emailAvailable(email: string) {
-    return this.http.get<string>(`${this.baseUrl}/checkEmail/${email}`);
+    return this.http.get<string>(`${this.baseUrl}/signUp/checkEmail/${email}`);
   }
 
   signUp(credentials: SignupCredentials) {

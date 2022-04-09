@@ -17,6 +17,7 @@ export class UniqueEmail implements AsyncValidator {
         }
       }),
       catchError((err) => {
+        console.log(err);
         if (err.error) {
           return of({ nonUniqueEmail: true });
         } else {
