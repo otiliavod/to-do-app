@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JWTTokenService } from 'src/app/auth/jwttoken.service';
 import { Task } from '../models/task';
@@ -13,7 +13,7 @@ import { TasksService } from '../tasks.service';
 export class TaskCreateComponent implements OnInit {
   task: Task;
   taskGroup = new FormGroup({
-    title: new FormControl(''),
+    title: new FormControl('', [Validators.required, Validators.minLength(2)]),
     status: new FormControl({ value: 1, disabled: true }),
     description: new FormControl(''),
   });
@@ -31,7 +31,7 @@ export class TaskCreateComponent implements OnInit {
   }
 
   save() {
-    if (!this.taskGroup.errors) {
+    if (!this.taskGroup.get('title').errors) {
       let task = new Task();
       task.taskTitle = this.taskGroup.get('title').value;
       task.status = this.taskGroup.get('status').value;
@@ -41,6 +41,13 @@ export class TaskCreateComponent implements OnInit {
         this.tasksService.setAddedTask(taskRes);
         this.router.navigateByUrl('/tasks');
       });
+    } else {
+      this.taskGroup.setErrors({ title: true });
     }
+  }
+
+  showErrors() {
+    const { dirty, touched, errors } = this.taskGroup.get('title');
+    return dirty && touched && errors;
   }
 }

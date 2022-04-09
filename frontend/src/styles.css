@@ -59,6 +59,10 @@ body,
   top: 8px;
 }
 
+.color-bg {
+  background-color: #fdf8f5;
+}
+
 .button.is-focused:not(:active),
 .button:focus:not(:active) {
   box-shadow: none;
@@ -79,4 +83,8 @@ body,
 
 .m-b-5 {
   margin-bottom: 5px;
+}
+
+.list-item:hover {
+  cursor: pointer;
 }

@@ -11,6 +11,7 @@ import { TasksService } from '../tasks.service';
 })
 export class TasksHomeComponent implements OnInit {
   tasks = [];
+  showFirstTask = false;
   updatedTask: Subscription;
   deletedTask: Subscription;
   addedTask: Subscription;
@@ -24,6 +25,7 @@ export class TasksHomeComponent implements OnInit {
     this.tasksService.getUserTasks().subscribe({
       next: (tasks) => {
         this.tasks = tasks;
+        this.showFirstTask = true;
       },
       error: () => {
         this.authService.signOutIfExpired();

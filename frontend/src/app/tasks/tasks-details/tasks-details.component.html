@@ -17,6 +17,7 @@
       class="input"
       [readonly]="!isEditable"
       [formControl]="detailsGroup.get('title')"
+      [ngClass]="{ 'is-danger': showErrors() }"
     />
   </div>
   <div class="m-b-22">
@@ -36,6 +37,14 @@
       [readonly]="!isEditable"
       [formControl]="detailsGroup.get('description')"
     ></textarea>
+  </div>
+  <div class="help is-danger" *ngIf="showErrors()">
+    <p *ngIf="detailsGroup.get('title').errors['required']">
+      Title is required
+    </p>
+    <p *ngIf="detailsGroup.get('title').errors['minlength']">
+      Title has to be at least two characters long
+    </p>
   </div>
   <div class="buttons">
     <button

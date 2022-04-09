@@ -5,7 +5,11 @@
 
   <div class="m-b-22">
     <h3 class="title is-6">Title</h3>
-    <input class="input" [formControl]="taskGroup.get('title')" />
+    <input
+      class="input"
+      [formControl]="taskGroup.get('title')"
+      [ngClass]="{ 'is-danger': showErrors() }"
+    />
   </div>
   <div class="m-b-22">
     <h3 class="title is-6">Status</h3>
@@ -23,6 +27,12 @@
       class="input"
       [formControl]="taskGroup.get('description')"
     ></textarea>
+  </div>
+  <div class="help is-danger" *ngIf="showErrors()">
+    <p *ngIf="taskGroup.get('title').errors['required']">Title is required</p>
+    <p *ngIf="taskGroup.get('title').errors['minlength']">
+      Title has to be at least two characters long
+    </p>
   </div>
   <div class="buttons">
     <button class="button is-primary svbtn" (click)="save()">Save</button>

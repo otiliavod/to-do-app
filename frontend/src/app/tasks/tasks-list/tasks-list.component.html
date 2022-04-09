@@ -3,7 +3,7 @@
     [routerLink]="'create'"
     routerLinkActive="list-item-active"
     class="list-item has-text-grey color-bg"
-    *ngIf="tasks.length === 0"
+    *ngIf="tasks.length === 0 && showFirstTask"
   >
     <div class="firstTask">
       <div>Add your first task by pressing</div>

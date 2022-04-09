@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../models/task';
 import { TaskUtilsService } from '../task-utils.service';
@@ -25,7 +25,10 @@ export class TasksDetailsComponent {
     this.route.data.subscribe(({ task }) => {
       this.task = task;
       this.detailsGroup = new FormGroup({
-        title: new FormControl(this.task.taskTitle),
+        title: new FormControl(this.task.taskTitle, [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
         status: new FormControl({
           value: this.task.status,
           disabled: !this.isEditable,
@@ -59,16 +62,25 @@ export class TasksDetailsComponent {
   }
 
   saveForm() {
-    this.task.taskTitle = this.detailsGroup.get('title').value;
-    this.task.status = this.detailsGroup.get('status').value;
-    this.task.taskDescription = this.detailsGroup.get('description').value;
-    this.taskService.updateTask(this.task).subscribe();
-    this.setEditable(false);
-    this.taskService.changedTask(this.task);
-    this.router.navigateByUrl('/tasks');
+    if (!this.detailsGroup.get('title').errors) {
+      this.task.taskTitle = this.detailsGroup.get('title').value;
+      this.task.status = this.detailsGroup.get('status').value;
+      this.task.taskDescription = this.detailsGroup.get('description').value;
+      this.taskService.updateTask(this.task).subscribe();
+      this.setEditable(false);
+      this.taskService.changedTask(this.task);
+      this.router.navigateByUrl('/tasks');
+    } else {
+      this.detailsGroup.setErrors({ title: true });
+    }
   }
 
   deleteTask() {
     this.taskUtils.deleteTask(this.task.id);
+  }
+
+  showErrors() {
+    const { dirty, touched, errors } = this.detailsGroup.get('title');
+    return dirty && touched && errors;
   }
 }

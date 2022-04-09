@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
-          Validators.pattern(/^[a-z0-9]+$/),
+          Validators.pattern(/^[a-zA-Z0-9]+$/),
         ],
         [this.uniqueUsername.validate]
       ),
@@ -68,7 +68,9 @@ export class SignupComponent implements OnInit {
 
     this.authService.signUp(this.authForm.value).subscribe({
       next: () => {
-        this.authService.signIn(this.authForm.value).subscribe();
+        this.authService.signIn(this.authForm.value).subscribe(() => {
+          this.router.navigateByUrl('/tasks');
+        });
       },
       error: (err) => {
         const { userAlreadyInUse, emailAlreadyInUse } = err.error;
