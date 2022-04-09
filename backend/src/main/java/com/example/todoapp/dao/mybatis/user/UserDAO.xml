@@ -20,7 +20,17 @@
     </select>
      <update id="updateProfile" parameterType="User">
         update users
-        set first_name = #{firstName}, last_name = #{lastName}, password = #{password}
+        <set>
+            <if test="firstName != NULL">
+                first_name = #{firstName},
+            </if>
+            <if test="lastName != NULL">
+                last_name = #{lastName},
+            </if>
+            <if test="password != NULL">
+                password = #{password}
+            </if>
+        </set>
         where id = #{id}
     </update>
     <delete id="deleteProfile" parameterType="Long">
