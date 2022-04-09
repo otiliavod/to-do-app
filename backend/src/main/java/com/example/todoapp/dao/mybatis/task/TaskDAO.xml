@@ -17,7 +17,7 @@
         order by status desc
     </select>
 
-    <insert id="addUserTask" parameterType="Task">
+    <insert id="addUserTask" parameterType="Task" useGeneratedKeys="true" keyProperty="id">
         insert into tasks(title,description,status,user_id)
         values (#{taskTitle}, #{taskDescription}, #{status}, #{userId})
     </insert>

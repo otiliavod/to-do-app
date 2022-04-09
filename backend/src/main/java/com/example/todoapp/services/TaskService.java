@@ -18,8 +18,9 @@ public class TaskService {
         return this.taskDao.getUserTasks(username);
     }
 
-    public void addUserTask(Task task) {
-        this.taskDao.addUserTask(task);
+    public Task addUserTask(Task task) {
+       this.taskDao.addUserTask(task);
+       return task;
     }
 
     public void updateTask(Task task) {

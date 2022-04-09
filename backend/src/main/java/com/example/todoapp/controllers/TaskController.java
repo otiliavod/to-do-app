@@ -32,8 +32,8 @@ public class TaskController {
     }
 
     @PostMapping(path="/")
-    public void addUserTask(@RequestBody Task task) {
-        this.taskService.addUserTask(task);
+    public Task addUserTask(@RequestBody Task task) {
+        return this.taskService.addUserTask(task);
     }
 
     @PutMapping(path="/")
