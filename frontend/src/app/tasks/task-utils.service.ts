@@ -9,7 +9,7 @@ export class TaskUtilsService {
   constructor(private taskService: TasksService, private router: Router) {}
 
   deleteTask(id: number) {
-    this.taskService.deleteTask(id);
+    this.taskService.deleteTask(id).subscribe();
     this.taskService.setDeletedTask(id);
     this.router.navigateByUrl('/tasks');
   }
