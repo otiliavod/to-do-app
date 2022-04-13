@@ -3,21 +3,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.example.todoapp</groupId>
+        <artifactId>todoapp-parent</artifactId>
+        <version>1.0.0</version>
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>ToDoApp</artifactId>
+
+    <artifactId>backend</artifactId>
+    <version>1.0.0</version>
     <packaging>war</packaging>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ToDoApp</name>
-    <description>ToDoApp</description>
+
     <properties>
+        <warName>todoapp-${project.version}</warName>
         <java.version>11</java.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.example.todoapp</groupId>
+            <artifactId>frontend</artifactId>
+            <version>1.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -33,7 +38,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.11.0</version>
+            <version>20030203.000550</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -74,18 +79,20 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Runtime, com.sun.xml.bind module -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
+            <version>3.0.2</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${warName}</finalName>
+        <directory>../target</directory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -100,8 +107,33 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals><goal>copy-resources</goal></goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${warName}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../frontend/dist/todo</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.6</version>
             </plugin>
         </plugins>
     </build>
