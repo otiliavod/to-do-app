@@ -5,7 +5,7 @@ import com.example.todoapp.services.ProfileService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class ProfileController {
     private final ProfileService profileService;
     public ProfileController(ProfileService profileService){

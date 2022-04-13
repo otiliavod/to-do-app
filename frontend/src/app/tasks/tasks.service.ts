@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { JWTTokenService } from '../auth/jwttoken.service';
 import { Task } from './models/task';
+import { environment } from '../../environments/environment';
+const BASE_URL = `${environment.restUrl}/tasks`;
 
 interface TaskSummary {
   title: string;
@@ -12,7 +14,6 @@ interface TaskSummary {
   providedIn: 'root',
 })
 export class TasksService {
-  baseUrl = 'http://localhost:8080/tasks';
   updatedTask = new BehaviorSubject(null);
   deletedTask = new BehaviorSubject(null);
   addedTask = new BehaviorSubject(null);
@@ -24,24 +25,24 @@ export class TasksService {
 
   getUserTasks() {
     return this.http.get<TaskSummary[]>(
-      `${this.baseUrl}/getUserTasks/${this.jwtTokenService.getUser()}`
+      `${BASE_URL}/getUserTasks/${this.jwtTokenService.getUser()}`
     );
   }
 
   getTask(id: string) {
-    return this.http.get<Task>(`${this.baseUrl}/${id}`);
+    return this.http.get<Task>(`${BASE_URL}/${id}`);
   }
 
   addTask(task: Task) {
-    return this.http.post<Task>(`${this.baseUrl}/`, task);
+    return this.http.post<Task>(`${BASE_URL}/`, task);
   }
 
   updateTask(task: Task) {
-    return this.http.put<Task>(`${this.baseUrl}/`, task);
+    return this.http.put<Task>(`${BASE_URL}/`, task);
   }
 
   deleteTask(id: number) {
-    return this.http.delete<Task>(`${this.baseUrl}/${id}`);
+    return this.http.delete<Task>(`${BASE_URL}/${id}`);
   }
 
   changedTask(task: Task) {
