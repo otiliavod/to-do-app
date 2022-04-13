@@ -11,6 +11,9 @@
   <artifactId>frontend</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
+  <properties>
+    <warName>todoapp-${project.version}</warName>
+  </properties>
   <build>
     <directory>../target</directory>
     <resources>
@@ -43,7 +46,7 @@
             </goals>
           </execution>
           <execution>
-            <id>npm run build</id>
+            <id>npm run build  --base-href=/${warName}/ </id>
             <goals>
               <goal>npm</goal>
             </goals>

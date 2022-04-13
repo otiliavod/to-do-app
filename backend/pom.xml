@@ -116,7 +116,7 @@
                         <phase>validate</phase>
                         <goals><goal>copy-resources</goal></goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/${warName}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/${warName}/classes/static/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>../frontend/dist/todo</directory>
