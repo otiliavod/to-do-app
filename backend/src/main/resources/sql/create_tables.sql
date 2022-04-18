@@ -4,7 +4,7 @@ create table users(
                       last_name varchar(40) not null,
                       username varchar(20) not null unique,
                       email varchar(40) not null unique,
-                      password varchar(40) not null
+                      password varchar(60) not null
 );
 
 create table tasks(
