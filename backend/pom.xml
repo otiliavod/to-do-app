@@ -15,14 +15,9 @@
     <properties>
         <warName>todoapp-${project.version}</warName>
         <java.version>11</java.version>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com.example.todoapp</groupId>
-            <artifactId>frontend</artifactId>
-            <version>1.0.0</version>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -116,7 +111,7 @@
                         <phase>validate</phase>
                         <goals><goal>copy-resources</goal></goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/${warName}/classes/static/</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>../frontend/dist/todo</directory>
@@ -125,10 +120,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

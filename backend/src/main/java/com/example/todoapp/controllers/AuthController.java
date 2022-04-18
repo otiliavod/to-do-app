@@ -2,7 +2,6 @@ package com.example.todoapp.controllers;
 
 import com.example.todoapp.domain.logic.JwtRequest;
 import com.example.todoapp.services.AuthService;
-import com.example.todoapp.services.JwtUserDetailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
