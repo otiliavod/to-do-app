@@ -2,7 +2,7 @@ spring:
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/ToDoAppDB
+    url: jdbc:postgresql://aap13ybvol7vff.cubjnizmtpup.us-east-1.rds.amazonaws.com:5432/ToDoAppDB
     driver-class-name: org.postgresql.Driver
     tomcat:
       access-to-underlying-connection-allowed: true
@@ -15,7 +15,7 @@ spring:
       remove-abandoned-timeout: 300
       log-abandoned: true
 server:
-  port: 8080
+  port: 5000
 
 jwt:
   secret: myjwtsecret

@@ -51,7 +51,7 @@
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run build-maven</arguments>
+              <arguments>run build</arguments>
             </configuration>
           </execution>
         </executions>
