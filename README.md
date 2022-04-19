@@ -5,6 +5,10 @@ or delete tasks. Each task has their own details that can be viewed by clicking 
 The user can also update their profile, field by field(first name, last name and/or password). Sending at least one of these properties
 will update only that property, the rest of them will not be modified.
 
+## Live Production Server
+
+http://todolistapplication-env.eba-dsjjfgyv.us-east-1.elasticbeanstalk.com/tasks
+
 ## Application Design
 
 https://www.figma.com/file/FAheKSCyohK0jGPyD7W5tJ/To-Do-Application?node-id=0%3A1
@@ -28,4 +32,3 @@ https://www.figma.com/file/FAheKSCyohK0jGPyD7W5tJ/To-Do-Application?node-id=0%3A
 - Resolver
 - Font Awesome v6.1.1 icons
 - Bulma CSS Framework
-
