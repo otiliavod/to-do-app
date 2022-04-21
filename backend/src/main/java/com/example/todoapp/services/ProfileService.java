@@ -1,6 +1,7 @@
 package com.example.todoapp.services;
 
 import com.example.todoapp.dao.mybatis.user.UserDAO;
+import com.example.todoapp.domain.logic.ProfileDetails;
 import com.example.todoapp.domain.vo.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class ProfileService {
     }
     public void deleteProfile(Long id) {
         this.userDao.deleteProfile(id);
+    }
+
+    public ProfileDetails getProfileDetails(Long id) {
+        return this.userDao.getProfileDetails(id);
     }
 }

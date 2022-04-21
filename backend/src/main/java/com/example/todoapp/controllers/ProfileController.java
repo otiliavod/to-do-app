@@ -1,7 +1,10 @@
 package com.example.todoapp.controllers;
 
+import com.example.todoapp.domain.logic.ProfileDetails;
 import com.example.todoapp.domain.vo.User;
 import com.example.todoapp.services.ProfileService;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,5 +24,14 @@ public class ProfileController {
     @DeleteMapping(path="/{id}")
     void deleteProfile(@PathVariable Long id) {
         this.profileService.deleteProfile(id);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<ProfileDetails> getProfileDetails(@PathVariable Long id) {
+        ProfileDetails profileDetails = this.profileService.getProfileDetails(id);
+        if(profileDetails != null) {
+            return ResponseEntity.ok(profileDetails);
+        }
+        return ResponseEntity.notFound().build();
     }
 }
