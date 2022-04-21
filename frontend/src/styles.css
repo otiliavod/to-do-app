@@ -67,6 +67,10 @@ body,
 .button:focus:not(:active) {
   box-shadow: none;
 }
+
+.t-a-r {
+  text-align: right;
+}
 /********** MARGINS *********/
 
 .m-t-10 {
