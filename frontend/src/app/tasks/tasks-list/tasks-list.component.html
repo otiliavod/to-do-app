@@ -12,15 +12,17 @@
       </button>
     </div>
   </div>
-  <div
-    [routerLink]="'details/' + task.id"
-    routerLinkActive="list-item-active"
-    class="list-item has-text-grey"
-    *ngFor="let task of tasks"
-  >
-    <div>{{ task.taskTitle }}</div>
-    <button class="button btn-n-m" (click)="deleteTask(task.id)">
-      <fa-icon icon="trash"></fa-icon>
-    </button>
-  </div>
+  <ng-container *ngFor="let task of tasks">
+    <div
+      [routerLink]="'details/' + task.id"
+      routerLinkActive="list-item-active"
+      class="list-item has-text-grey"
+      *ngIf="showActiveTasks == task.status"
+    >
+      <div>{{ task.taskTitle }}</div>
+      <button class="button btn-n-m" (click)="deleteTask(task.id)">
+        <fa-icon icon="trash"></fa-icon>
+      </button>
+    </div>
+  </ng-container>
 </div>

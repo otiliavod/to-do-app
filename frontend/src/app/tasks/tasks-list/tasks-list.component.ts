@@ -9,6 +9,7 @@ import { TaskUtilsService } from '../task-utils.service';
 export class TasksListComponent {
   @Input() tasks = [];
   @Input() showFirstTask;
+  @Input() showActiveTasks;
 
   constructor(private taskUtils: TaskUtilsService) {}
 

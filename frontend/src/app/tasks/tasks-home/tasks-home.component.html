@@ -2,7 +2,17 @@
   <div class="columns is-centered p-0">
     <div class="column is-two-fifths">
       <div class="t-flex">
-        <h3 class="title is-4 has-text-grey-dark">Your tasks</h3>
+        <h3 class="title is-4 has-text-grey-dark">
+          Your
+          <select
+            (change)="changeActiveTasks($event)"
+            class="dr title is-4 has-text-grey-dark"
+          >
+            <option value="1">in progress</option>
+            <option value="0">completed</option>
+          </select>
+          tasks
+        </h3>
         <button
           class="button btn-n-m has-text-primary"
           *ngIf="tasks.length > 0"
@@ -21,6 +31,7 @@
       class="column is-two-fifths"
       [tasks]="tasks"
       [showFirstTask]="showFirstTask"
+      [showActiveTasks]="showActiveTasks"
     ></app-tasks-list>
     <div class="column is-two-fifths">
       <router-outlet></router-outlet>

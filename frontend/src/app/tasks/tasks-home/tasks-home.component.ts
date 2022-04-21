@@ -15,6 +15,7 @@ export class TasksHomeComponent implements OnInit {
   updatedTask: Subscription;
   deletedTask: Subscription;
   addedTask: Subscription;
+  showActiveTasks: number = 1;
   constructor(
     private tasksService: TasksService,
     private authService: AuthService,
@@ -72,5 +73,10 @@ export class TasksHomeComponent implements OnInit {
 
   openCreateTask() {
     this.router.navigateByUrl('tasks/create');
+  }
+
+  changeActiveTasks(event) {
+    this.showActiveTasks = event.target.value;
+    this.router.navigateByUrl('tasks');
   }
 }
