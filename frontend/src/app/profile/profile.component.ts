@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JWTTokenService } from '../auth/jwttoken.service';
 import { User } from '../auth/models/user';
 import { MatchPassword } from '../auth/validators/match-password';
+import { ProfileDetails } from '../models/ProfileDetails.model';
 import { ProfileService } from '../profile.service';
 
 @Component({
@@ -12,6 +13,8 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  userID: number;
+  profileDetails: ProfileDetails = new ProfileDetails();
   profileForm = new FormGroup(
     {
       firstName: new FormControl(''),
@@ -35,7 +38,10 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userID = this.jwtTokenService.getUserId();
+    this.getProfileDetails();
+  }
 
   saveProfile() {
     if (this.profileForm.valid) {
@@ -43,7 +49,7 @@ export class ProfileComponent implements OnInit {
       user.firstName = this.profileForm.get('firstName').value;
       user.lastName = this.profileForm.get('lastName').value;
       user.password = this.profileForm.get('password').value;
-      user.id = this.jwtTokenService.getUserId();
+      user.id = this.userID;
       this.profileService.updateProfile(user).subscribe({
         next: () => this.router.navigateByUrl('/tasks'),
         error: () => {
@@ -55,5 +61,11 @@ export class ProfileComponent implements OnInit {
 
   cancel() {
     this.router.navigateByUrl('/tasks');
+  }
+
+  getProfileDetails() {
+    this.profileService
+      .getProfileDetails(this.userID)
+      .subscribe((profileDetails) => (this.profileDetails = profileDetails));
   }
 }

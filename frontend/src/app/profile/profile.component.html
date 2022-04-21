@@ -4,12 +4,14 @@
     <div class="m-b-22">
       <app-input
         label="First Name"
+        [placeholder]="profileDetails.firstName"
         [control]="profileForm.get('firstName')"
       ></app-input>
     </div>
     <div class="m-b-22">
       <app-input
         label="Last Name"
+        [placeholder]="profileDetails.lastName"
         [control]="profileForm.get('lastName')"
       ></app-input>
     </div>
@@ -17,6 +19,7 @@
       <app-input
         label="New Password"
         inputType="password"
+        placeholder="Optional"
         [control]="profileForm.get('password')"
       ></app-input>
     </div>
@@ -24,6 +27,7 @@
       <app-input
         label="Password Confirmation"
         inputType="password"
+        placeholder="Optional"
         [control]="profileForm.get('passwordConfirmation')"
       ></app-input>
     </div>

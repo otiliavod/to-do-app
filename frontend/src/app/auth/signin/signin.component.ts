@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { JWTTokenService } from '../jwttoken.service';
-import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-signin',
@@ -38,10 +36,8 @@ export class SigninComponent implements OnInit {
       next: () => {
         this.router.navigateByUrl('/tasks');
       },
-      error: ({ error }) => {
-        if (error.username) {
-          this.authForm.setErrors({ credentials: true });
-        }
+      error: () => {
+        this.authForm.setErrors({ credentials: true });
       },
     });
   }
