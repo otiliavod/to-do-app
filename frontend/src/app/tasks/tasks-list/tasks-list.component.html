@@ -7,7 +7,7 @@
   >
     <div class="firstTask">
       <div>Add your first task by pressing</div>
-      <button class="button btn-n-m btn-circle">
+      <button title="Create a new task" class="button btn-n-m btn-circle">
         <fa-icon icon="circle-plus"></fa-icon>
       </button>
     </div>
@@ -20,7 +20,11 @@
       *ngIf="showActiveTasks == task.status"
     >
       <div>{{ task.taskTitle }}</div>
-      <button class="button btn-n-m" (click)="deleteTask(task.id)">
+      <button
+        title="Delete"
+        class="button btn-n-m"
+        (click)="deleteTask(task.id)"
+      >
         <fa-icon icon="trash"></fa-icon>
       </button>
     </div>
